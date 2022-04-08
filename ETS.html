@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <title>Qatrunnada Gusti Nadhifah - 06311940000033</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const labels = [
+            '2011',
+            '2012',
+            '2013',
+            '2014',
+            '2015',
+            '2016',
+            '2017',
+            '2018',
+            '2019',
+            '2020',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Beef Consumption',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [1.72707,
+                    1.66789,
+                    1.80803,
+                    1.89818,
+                    1.82363,
+                    1.84012,
+                    1.86938,
+                    1.89821,
+                    1.92803,
+                    1.95895,],
+            },
+            {
+                label: 'Poultry Consumption',
+                backgroundColor: 'rgb(67, 214, 11)',
+                borderColor: 'rgb(67, 214, 11)',
+                type: 'line',
+                data: [6.09293,
+                    6.27259,
+                    6.55968,
+                    6.55016,
+                    6.71709,
+                    6.7001,
+                    6.75211,
+                    6.80238,
+                    6.85473,
+                    6.90765,],
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Indonesian Meat Consumption'
+                    }
+                }
+            },
+
+                animation: {
+                    onComplete: () => {
+                        delayed = true;
+                    },
+                    delay: (context) => {
+                        let delay = 0;
+                        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+                            delay = context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay;
+                    },
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
+            };
+    </script>
+
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+
+
+</body>
+
+</html>
